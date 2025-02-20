@@ -4,7 +4,7 @@ This repository manages **client and environment-specific configurations** for d
 
 ## 🏗️ **Directory Structure**
 ```
-. ├── .github/workflows/ # CI/CD pipeline configurations 
+├── .github/workflows/ # CI/CD pipeline configurations 
 │ ├── deploy.yaml ├── C1/ # Client-specific configuration 
 │ ├── PROD/ # Environment-specific configuration 
 │ │ ├── values.yaml 
