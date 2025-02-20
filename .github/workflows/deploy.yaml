@@ -1,0 +1,44 @@
+name: Deploy Specific Client Environment
+
+on:
+  push:
+    paths:
+      - 'C*/**/values.yaml'  # Watches for changes in values.yaml files under any client/env
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Identify Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v39
+        with:
+          files: 'C*/**/values.yaml'
+
+      - name: Extract Client and Environment
+        id: parse-env
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Processing file: $file"
+            CLIENT=$(echo $file | cut -d '/' -f1)
+            ENV=$(echo $file | cut -d '/' -f2)
+            echo "CLIENT=$CLIENT" >> $GITHUB_ENV
+            echo "ENV=$ENV" >> $GITHUB_ENV
+          done
+
+      - name: Configure Kubectl
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig
+          export KUBECONFIG=$(pwd)/kubeconfig
+          kubectl config use-context my-cluster
+
+      - name: Deploy to Namespace
+        run: |
+          kubectl apply -f deployments/common-deployment.yaml \
+            --namespace=${{ env.CLIENT }}-${{ env.ENV }}
+
+          echo "Deployment completed for ${{ env.CLIENT }} in ${{ env.ENV }} ✅"
