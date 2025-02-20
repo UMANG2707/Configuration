@@ -3,6 +3,7 @@
 This repository manages **client and environment-specific configurations** for deployments.
 
 ## 🏗️ **Directory Structure**
+```
 . ├── .github/workflows/ # CI/CD pipeline configurations 
 │ ├── deploy.yaml ├── C1/ # Client-specific configuration 
 │ ├── PROD/ # Environment-specific configuration 
@@ -16,7 +17,7 @@ This repository manages **client and environment-specific configurations** for d
 ├── deployments/ # Common deployment templates 
 │ ├── common-deployment.yaml 
 ├── README.md
-
+```
 
 ## 📌 **Client & Environment Configurations**
 Each client (`C1`, `C2`, etc.) has its own directory, and **each environment** (`PROD`, `TEST`, `UAT`) has a `values.yaml` file with configuration details.
