@@ -1,1 +1,18 @@
+clientName: "c1"
+env: "prod"
+
+modules:
+  - name: "API-dotnet"
+    image: "uamng/api-dotnet:v2"
+    port: 8080
+    env:
+      DB_HOST: "prod-db-host"
+      DB_USER: "prod-user"
+      DB_PASS: "prod-password"
+
+  - name: "db"
+    image: "uamng/db:v1"
+    port: 8082
+
+
 
