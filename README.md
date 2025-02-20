@@ -22,6 +22,8 @@ This repository manages **client and environment-specific configurations** for d
 ## 📌 **Client & Environment Configurations**
 Each client (`C1`, `C2`, etc.) has its own directory, and **each environment** (`PROD`, `TEST`, `UAT`) has a `values.yaml` file with configuration details.
 
+![alt text](image-1.png)
+
 ### **Example: `C1/PROD/values.yaml`**
 ```yaml
 clientName: "c1"
