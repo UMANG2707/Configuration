@@ -40,9 +40,9 @@ modules:
 ```
 ## Deployment Process
 
-The deployment pipeline uses GitHub Actions (deploy.yaml) to apply configurations.
+- The deployment pipeline uses GitHub Actions (deploy.yaml) to apply configurations.
 
-Deploying to Kubernetes [This will be mentioned in pipeline to deploy]
+- Deploying to Kubernetes [This will be mentioned in pipeline to deploy]
 ```
 kubectl apply -f deployments/common-deployment.yaml \
   --values=C1/PROD/values.yaml
@@ -52,8 +52,8 @@ kubectl apply -f deployments/common-deployment.yaml \
 
 Instead of storing database credentials in plain text, use Kubernetes Secrets or environment variables managed by a secret management tool like:
 
-AWS Secrets Manager
-HashiCorp Vault
-Kubernetes Secrets
+- AWS Secrets Manager
+- HashiCorp Vault
+- Kubernetes Secrets
 
-- can create it using pipeline only or can store it AWS secreate manager / vault and retrieve it while pipeline is running
+  - can create it using pipeline only or can store it AWS secreate manager / vault and retrieve it while pipeline is running
