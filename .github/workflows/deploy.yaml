@@ -19,26 +19,14 @@ jobs:
         with:
           files: 'C*/**/values.yaml'
 
-      - name: Extract Client and Environment
-        id: parse-env
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "Processing file: $file"
-            CLIENT=$(echo $file | cut -d '/' -f1)
-            ENV=$(echo $file | cut -d '/' -f2)
-            echo "CLIENT=$CLIENT" >> $GITHUB_ENV
-            echo "ENV=$ENV" >> $GITHUB_ENV
-          done
-
       - name: Configure Kubectl
         run: |
-          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig
-          export KUBECONFIG=$(pwd)/kubeconfig
-          kubectl config use-context my-cluster
+          echo "configuring kubeconfig in this need to provide kubeconfig to access the cluster"
 
       - name: Deploy to Namespace
         run: |
-          kubectl apply -f deployments/common-deployment.yaml \
-            --namespace=${{ env.CLIENT }}-${{ env.ENV }}
+          echo "Need to deploy using helm or kubectl deploy and all the deployments of specific modules and need to provide values file in commnad it self so take the variables from specific file"
 
-          echo "Deployment completed for ${{ env.CLIENT }} in ${{ env.ENV }} ✅"
+      - name: Deployment is confirm
+        run: |
+          echo "Done!!!!!"
