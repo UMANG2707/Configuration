@@ -4,7 +4,7 @@ env: "prod"
 
 modules:
   - name: "API-dotnet"
-    image: "uamng/api-dotnet:v2"
+    image: "uamng/api-dotnet:v3"
     port: 8080
     env:
       DB_HOST: "prod-db-host"
