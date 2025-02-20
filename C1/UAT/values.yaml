@@ -1,1 +1,16 @@
 
+clientName: "c1"
+env: "uat"
+
+modules:
+  - name: "API-dotnet"
+    image: "uamng/api-dotnet:main"
+    port: 8080
+    env:
+      DB_HOST: "prod-db-host"
+      DB_USER: "prod-user"
+      DB_PASS: "prod-password"
+
+  - name: "db"
+    image: "uamng/db:main"
+    port: 8082
